@@ -1,6 +1,7 @@
 <?php
 
 namespace application\core;
+use application\core\Views;
 
 class Router {
 
@@ -52,19 +53,21 @@ class Router {
                     $controller = new $path($this->params);
                     $controller->$action();
                 } else {
-                    echo 'Не найден экшен: '.$action;
+                    View::errorCode(404);
+                    // echo 'Не найден экшен: '.$action;
                 }
                 // echo 'OK';
             } else {
-
-                echo 'Не найден контроллер: '.$path;
+                View::errorCode(404);
+                // echo 'Не найден контроллер: '.$path;
             }
             // echo $controller;
             // echo '<p>controller: <b>'.$this->params['controller'].'</b></P>';
             // echo '<p>controller: <b>'.$this->params['action'].'</b></P>';
             // echo 'Машрут найден';
         } else {
-            echo 'Машрут не найден 404';
+            View::errorCode(404);
+            // echo 'Машрут не найден 404';
         }
         // echo 'start';
     }
