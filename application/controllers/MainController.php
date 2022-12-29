@@ -3,8 +3,6 @@
 namespace application\controllers;
 
 use application\core\Controller;
-use application\lib\Db;
-
 
 class MainController extends Controller {
 
@@ -15,25 +13,29 @@ class MainController extends Controller {
         //     'age' => '88',
         //     'array' => [1, 2, 3],
         // ];
-        $db = new Db;
-        $form = '2; DELETE FROM users';
-        $params = [
-            'id' => 1,
-        ];
+        // $db = new Db;
+        // $form = '2; DELETE FROM users';
+        // $params = [
+        //     'id' => 1,
+        // ];
 
-        $data = $db->column('
-        SELECT 
-            name
-        FROM
-            users
-        WHERE
-            id = :id', $params);
+        // $data = $db->column('
+        // SELECT 
+        //     name
+        // FROM
+        //     users
+        // WHERE
+        //     id = :id', $params);
             
         // WHERE
         // id = 1 
-        debug($data);
-
-        $this->view->render('Главная страница');
+        // debug($data);
+        $result = $this->model->getNews();
+        $vars = [
+            'news' => $result,
+        ];
+        // debug($result);
+        $this->view->render('Главная страница', $vars);
     }
 
     // public function contactAction() {

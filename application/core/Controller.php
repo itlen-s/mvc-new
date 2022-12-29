@@ -2,6 +2,8 @@
 
 namespace application\core;
 
+use application\core\Views;
+
 abstract class Controller {
 
     public $route;
@@ -14,7 +16,18 @@ abstract class Controller {
         // debug($this->route);
         $this->route = $route;
         $this->view = new View($route);
+        $this->model = $this->loadModel($route['controller']);
+        // debug($this->model);
         // $this->before();
+    }
+
+    public function loadmodel($name) {
+        $path = 'application\models\\'.ucfirst($name); //Проверяем  наличиекласс
+        if (class_exists($path)){
+            // debug('123');
+            return new $path;
+        }
+        // debug($path);
     }
 
 }

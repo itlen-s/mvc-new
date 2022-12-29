@@ -12,7 +12,14 @@
 <!-- <p> Имя:  <?php echo $name?></p> -->
 <!-- <p> Возраст: <?php echo $age?></p> -->
 
-<!-- <?php debug($array); ?>
- -->
+    <?php
+    foreach ($news as $val):
+    // debug($news); 
+    ?>
+    <h3><?=$val['title']; ?></h3>
+    <p><?=$val['description']; ?></p>
+    <hr>
+    <?php endforeach; ?>
+
 </body>
 </html>
